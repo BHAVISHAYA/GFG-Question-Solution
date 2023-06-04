@@ -14,23 +14,29 @@ class Solution
 {
     public:
     //Function to find list of all words possible by pressing given numbers.
-    vector<string> v;
-    vector<string> p = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    void combineWords(int a[], int n, string sub, int i) {
-        if(i == n) {
-            v.push_back(sub);
+    unordered_map<int, string> m = {{2, "abc"}, {3, "def"}, {4, "ghi"}, {5, "jkl"}, {6, "mno"}, {7, "pqrs"}, {8, "tuv"}, {9, "wxyz"}};
+    
+    void help(int i, int n, int a[], string &temp, vector<string> &ans) {
+        if(i >= n) {
+            ans.push_back(temp);
             return;
         }
-        for(int j = 0 ; j < p[a[i]].size() ; j++) {
-            combineWords(a, n, sub + p[a[i]][j], i + 1);
+        
+        string str = m[a[i]];
+        for(int j = 0 ; j < str.size() ; j++) {
+            temp.push_back(str[j]);
+            help(i + 1, n, a, temp, ans);
+            temp.pop_back();
         }
     }
+    
     vector<string> possibleWords(int a[], int N)
     {
         //Your code here
-        string temp = "";
-        combineWords(a, N, temp, 0);
-        return v;
+        vector<string> ans;
+        string temp;
+        help(0, N, a, temp, ans);
+        return ans;
     }
 };
 
