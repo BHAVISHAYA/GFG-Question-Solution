@@ -20,5 +20,5 @@ SBGA SGAB SGBA
 <span style="font-size: 18px;">Given string ABSG has 24 permutations.</span>
 </pre>
 <p><span style="font-size: 18px;"><strong>Your Task:&nbsp;&nbsp;</strong><br>You don't need to read input or print anything. Your task is to complete the function <strong>find_permutaion()&nbsp;</strong>which takes the string S as input parameter and returns a vector of string in lexicographical order.</span></p>
-<p><span style="font-size: 18px;"><strong>Expected Time Complexity:&nbsp;</strong>O(n! * n)<br></span><span style="font-size: 18px;"><strong>Expected Space&nbsp;Complexity:&nbsp;</strong>O(n)</span></p>
+<p><span style="font-size: 18px;"><strong>Expected Time Complexity:&nbsp;</strong>O(n! * n)<br></span><span style="font-size: 18px;"><strong>Expected Space&nbsp;Complexity:&nbsp;</strong>O(n! * n)</span></p>
 <p><span style="font-size: 18px;"><strong>Constraints:</strong><br>1 &lt;= length of string &lt;= 5</span></p></div>
