@@ -6,30 +6,28 @@ using namespace std;
 class Solution
 {
 	public:
-	    void perm(int pos, string &str, vector<string> &ans) {
-	        if(pos >= str.size()) {
-	            ans.push_back(str);
+	    void help(int pos, string &s, set<string> &ans) {
+	        if(pos >= s.size()) {
+	            ans.insert(s);
+	            return;
 	        }
-	        for(int i = pos ; i < str.size() ; i++) {
-	            swap(str[i], str[pos]);
-	            perm(pos + 1, str, ans);
-	            swap(str[i], str[pos]); // Undo the change that we have made in the first step
+	        
+	        for(int i = pos ; i < s.size() ; i++) {
+	            swap(s[i], s[pos]);
+	            help(pos + 1, s, ans);
+	            swap(s[i], s[pos]);
 	        }
 	    }
 		vector<string>find_permutation(string S)
 		{
 		    // Code here there
-		    vector<string> ans;
-		    perm(0, S, ans);
-		    set<string> meraSamaadhaan;
-		    for(int i = 0 ; i < ans.size() ; i++) {
-		        meraSamaadhaan.insert(ans[i]);
+		    vector<string> v;
+		    set<string> ans;
+		    help(0, S, ans);
+		    for(auto &value : ans) {
+		        v.push_back(value);
 		    }
-		    ans.clear();
-		    for(auto &value : meraSamaadhaan) {
-		        ans.push_back(value);
-		    }
-		    return ans;
+		    return v;
 		}
 };
 
