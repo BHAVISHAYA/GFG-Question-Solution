@@ -5,6 +5,39 @@ using namespace std;
 
 vector<vector<int>> uniqueRow(int M[MAX][MAX],int row,int col);
 
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+    // #define MAX 1000
+    vector<vector<int>> uniqueRow(int M[MAX][MAX],int row,int col)
+    {
+        vector<vector<int>> v;
+        vector<vector<int>> ans;
+        for(int i = 0 ; i < row ; i++) {
+            vector<int> t;
+            for(int j = 0 ; j < col ; j++) {
+                t.push_back(M[i][j]);
+            }
+            ans.push_back(t);
+        }
+        set<vector<int>> st;
+        for(int i = 0 ; i < ans.size() ; i++) {
+            st.insert(ans[i]);
+        }
+        for(int i = 0 ; i < ans.size() ; i++) {
+            if(st.find(ans[i]) != st.end()) {
+                v.push_back(ans[i]);
+                st.erase(ans[i]);
+            }
+        }
+        return v;
+    }
+};
+
+//{ Driver Code Starts.
+
 int main()
 {
     int T;
@@ -17,7 +50,8 @@ int main()
     	for(int i=0;i<n;i++)
     	for(int j=0;j<m;j++)
     	cin>>a[i][j];
-    	vector<vector<int>> vec = uniqueRow(a,n,m);
+    	Solution ob;
+    	vector<vector<int>> vec = ob.uniqueRow(a,n,m);
     	for(int i = 0;i<vec.size();i++){
     	    for(int x : vec[i]){
     	        cout<<x<<" ";
@@ -29,31 +63,3 @@ int main()
 }
 
 // } Driver Code Ends
-
-
-/*You are required to complete this function*/
-vector<vector<int>> uniqueRow(int M[MAX][MAX],int row,int col)
-{
-//Your code here
-    map<vector<int>, int> mp;
-    vector<vector<int>> v;
-    for(int i = 0 ; i < row ; i++) {
-        vector<int> temp;
-        for(int j = 0 ; j < col ; j++) {
-            temp.push_back(M[i][j]);
-        }
-        mp[temp]++;
-        v.push_back(temp);
-    }
-    vector<vector<int>> ans;
-    for(int i = 0 ; i < v.size() ; i++) {
-        if(mp[v[i]] == 1) {
-            ans.push_back(v[i]);
-        }
-        else if(mp[v[i]] > 1){
-            ans.push_back(v[i]);
-            mp[v[i]] = 0;
-        }
-    }
-    return ans;
-}
