@@ -1,21 +1,22 @@
-#include<bits/stdc++.h>
+//{ Driver Code Starts
+#include <bits/stdc++.h>
 using namespace std;
 
-typedef pair<int, int> pii;
 
-int main() {
-    int t;
-    cin >> t;
-    while(t--) {
-        int n;
-        cin >> n;
-        vector<int> nums(n);
-        for(int i = 0 ; i < n ; i++) cin >> nums[i];
+
+// } Driver Code Ends
+class Solution{
+    public:
+    //Complete this function
+    //Function to sort the array according to frequency of elements.
+    vector<int> sortByFreq(int arr[],int n)
+    {
+        vector<int> ans;
         unordered_map<int, int> m;
         for(int i = 0 ; i < n ; i++) {
-            m[nums[i]]++;
+            m[arr[i]]++;
         }
-        vector<pii> p;
+        vector<pair<int, int>> p;
         for(auto &value : m) {
             p.push_back({value.second, value.first});
         }
@@ -23,8 +24,7 @@ int main() {
         if(p.size() == 1) {
             int a = p[0].first;
             while(a--)
-            cout << p[0].second << " ";
-            cout << endl;
+            ans.push_back(p[0].second);
         }
         else {
             stack<int> st;
@@ -41,7 +41,7 @@ int main() {
                         st.push(p[i].second);
                     }
                     while(!st.empty()) {
-                        cout << st.top() << " ";
+                        ans.push_back(st.top());
                         st.pop();
                     }
                 }
@@ -49,8 +49,7 @@ int main() {
             if(p[p.size() - 1].first != p[p.size() - 2].first) {
                 int a = p[p.size() - 1].first;
                 while(a--)
-                cout << p[p.size() - 1].second << " ";
-                cout << endl;
+                ans.push_back(p[p.size() - 1].second);
             }
             else {
                 int a = p[p.size() - 1].first;
@@ -58,11 +57,45 @@ int main() {
                     st.push(p[p.size() - 1].second);
                 }
                 while(!st.empty()) {
-                    cout << st.top() << " ";
+                    ans.push_back(st.top());
                     st.pop();
                 }
-                cout << endl;
             }
         }
+        return ans;
     }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+	
+	
+	int t;
+	cin >> t;
+	
+	
+	while(t--){
+	    
+	    
+	    int n;
+	    cin >> n;
+	    
+	    int a[n+1];
+	    
+	    for(int i = 0;i<n;i++){
+	        cin >> a[i];
+	    }
+	    Solution obj;
+	    vector<int> v;
+	    v = obj.sortByFreq(a,n);
+	    for(int i:v)
+	        cout<<i<<" ";
+	    cout << endl;
+	}
+	
+	return 0;
 }
+
+
+// } Driver Code Ends
