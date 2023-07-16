@@ -11,21 +11,18 @@ using namespace std;
 class Solution
 {
     public:
-    
+    void reverse(queue<int> &q) {
+        if(q.empty()) return;
+        int top = q.front();
+        q.pop();
+        reverse(q);
+        q.push(top);
+    }
     queue<int> rev(queue<int> q)
     {
         // add code here.
-        queue<int> q2;
-        stack<int>st;
-        while(!q.empty()) {
-            st.push(q.front());
-            q.pop();
-        }
-        while(!st.empty()) {
-            q2.push(st.top());
-            st.pop();
-        }
-        return q2;
+        reverse(q);
+        return q;
     }
 };
 
