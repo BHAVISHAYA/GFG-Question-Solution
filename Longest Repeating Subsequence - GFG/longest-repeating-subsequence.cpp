@@ -5,25 +5,26 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 	public:
+	    int LCS(string &x, string &y) {
+	        int dp[x.size() + 1][x.size() + 1];
+	        for(int i = 0 ; i < x.size() + 1 ; i++) {
+	            for(int j = 0 ; j < x.size() + 1 ; j++) {
+	                if(i == 0 || j == 0) {
+	                    dp[i][j] = 0;
+	                }
+	                else if(x[i - 1] == y[j - 1] && i != j) {
+	                    dp[i][j] = 1 + dp[i - 1][j - 1];
+	                }
+	                else {
+	                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+	                }
+	            }
+	        }
+	        return dp[x.size()][x.size()];
+	    }
 		int LongestRepeatingSubsequence(string str){
 		    // Code here
-		    int dp[str.size() + 1][str.size() + 1];
-		    for(int i = 0 ; i < str.size() + 1 ; i++) {
-		        for(int j = 0 ; j < str.size() + 1 ; j++) {
-		            if(i == 0 || j == 0) {
-		                dp[i][j] = 0;
-		            }
-		            // Agar (i == j) hua toh same index dono string mein aa jaayega 
-		            // That's why ye condition lagaana bhut important thaa 
-		            else if(str[i - 1] == str[j - 1] && i != j) {
-		                dp[i][j] = 1 + dp[i - 1][j - 1];
-		            }
-		            else {
-		                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
-		            }
-		        }
-		    }
-		    return dp[str.size()][str.size()];
+		    return LCS(str, str);
 		}
 
 };
