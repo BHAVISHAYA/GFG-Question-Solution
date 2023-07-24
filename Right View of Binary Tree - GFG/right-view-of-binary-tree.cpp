@@ -44,24 +44,23 @@ class Solution
     vector<int> rightView(Node *root)
     {
        // Your Code here
-       vector<int> ans;
-       if(root == NULL) return ans;
-       queue<Node*> Q;
-       Q.push(root);
-       while(!Q.empty()) {
-           int count = Q.size();
-           for(int i = 0 ; i < count ; i++) {
-               Node* curr = Q.front();
-               Q.pop();
-               if(i == count - 1) 
-               ans.push_back(curr -> data);
+       vector<int> v;
+       queue<Node*> q;
+       q.push(root);
+       while(!q.empty()) {
+           int ct = q.size();
+           for(int i = 0 ; i < ct ; i++) {
+               Node* curr = q.front();
+               q.pop();
+               if(i == ct - 1) 
+               v.push_back(curr -> data);
                if(curr -> left != NULL) 
-               Q.push(curr -> left);
+               q.push(curr -> left);
                if(curr -> right != NULL) 
-               Q.push(curr -> right);
+               q.push(curr -> right);
            }
        }
-       return ans;
+       return v;
     }
 };
 
