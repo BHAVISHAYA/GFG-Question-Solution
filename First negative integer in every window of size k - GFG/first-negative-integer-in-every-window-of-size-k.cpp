@@ -29,22 +29,22 @@ int main() {
 // } Driver Code Ends
 
 
-vector<long long> printFirstNegativeInteger(long long int A[], long long int N, long long int K) {
+vector<long long> printFirstNegativeInteger(long long int nums[], long long int N, long long int k) {
     vector<long long> ans;
     vector<long long> ne;
-    long long int slow = 0, fast = 0;
+    long long slow = 0, fast = 0;
     while(fast < N) {
-        if(A[fast] < 0) {
-            ne.push_back(A[fast]);
+        if(nums[fast] < 0) { // Agar -ve number hai toh mai isse list mein store kr lunga 
+            ne.push_back(nums[fast]);
         }
-        if(fast - slow + 1 < K)
+        if(fast - slow + 1 < k)
         fast++;
-        else if(fast - slow + 1 == K) {
-            if(ne.size() == 0) 
+        else if(fast - slow + 1 == k) {
+            if(ne.size() == 0) // Ab agar list ki size 0 hai abhi toh ek bhi -ve number nahi hai toh apn 0 add karenge answer mein 
             ans.push_back(0);
             else 
             ans.push_back(ne.front());
-            if(ne.size() > 0 && ne.front() == A[slow]) 
+            if(ne.size() > 0 && ne.front() == nums[slow]) 
             ne.erase(ne.begin() + 0);
             slow++;
             fast++;
