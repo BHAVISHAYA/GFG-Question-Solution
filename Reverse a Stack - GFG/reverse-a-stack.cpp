@@ -10,21 +10,16 @@ using namespace std;
 
 class Solution{
 public:
-    void reverse(stack<int> &st, stack<int> &ans) {
-        if(st.empty()) {
-            while(!ans.empty()) {
-                cout << ans.top() << " ";
-                ans.pop();
-            }
-            return ;
-        }
-        ans.push(st.top());
-        st.pop();
-        reverse(st, ans);
-    }
     void Reverse(stack<int> &St){
-        stack<int> ans;
-        reverse(ans, St);
+        queue<int> q;
+        while(!St.empty()) {
+            q.push(St.top());
+            St.pop();
+        }
+        while(!q.empty()) {
+            St.push(q.front());
+            q.pop();
+        }
     }
 };
 
