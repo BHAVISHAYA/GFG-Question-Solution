@@ -6,24 +6,24 @@ using namespace std;
 class Solution{
     public:
     //Complete this function
-    vector<string> v;
-    void permute(int i, string &s) {
-        if(i == s.size() - 1) {
-            v.push_back(s);
-            return;
+    void permute(int pos, string &s, vector<string> &ans) {
+        if(pos >= s.size()) {
+            ans.push_back(s);
         }
-        for(int j = i ; j < s.size() ; j++) {
-            swap(s[i], s[j]);
-            permute(i + 1, s);
-            swap(s[j], s[i]);
+        
+        for(int i = pos ; i < s.size() ; i++) {
+            swap(s[pos], s[i]);
+            permute(pos + 1, s, ans);
+            swap(s[pos], s[i]);
         }
     }
     vector<string> permutation(string S)
     {
         //Your code here
-        permute(0, S);
-        sort(v.begin(), v.end());
-        return v;
+        vector<string> ans;
+        permute(0, S, ans);
+        sort(ans.begin(), ans.end());
+        return ans;
     }
 };
 
