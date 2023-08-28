@@ -66,7 +66,7 @@ struct Node {
 };*/
 
 //Function to remove duplicates from sorted linked list.
-Node* insert(Node* &head, Node* &tail, int data) {
+void insert(Node* &head, Node* &tail, int data) {
     Node* newNode = new Node(data);
     if(head == NULL) {
         head = newNode;
@@ -76,20 +76,19 @@ Node* insert(Node* &head, Node* &tail, int data) {
         tail -> next = newNode;
         tail = newNode;
     }
-    return head;
 }
 Node *removeDuplicates(Node *head)
 {
+    Node* Head = NULL;
+    Node* Tail = NULL;
     set<int> st;
     Node* temp = head;
     while(temp != NULL) {
         st.insert(temp -> data);
         temp = temp -> next;
     }
-    Node* Head = NULL;
-    Node* Tail = NULL;
     for(auto &value : st) {
-        Head = insert(Head, Tail, value);
+        insert(Head, Tail, value);
     }
     return Head;
 }
